@@ -6,10 +6,15 @@
         private int memberCount;
         private int difficulty;
 
+        static int totalParties = 0;
+        static int maxMembers = 4;
+        static int requiredMembers = 2;
+
         public DungeonParty(string partyName, int difficulty) {
             this.partyName = partyName;
             memberCount = 1;
             this.difficulty = difficulty;
+            totalParties++;
         }
 
         public void PrintPartyInfo() {
@@ -19,7 +24,7 @@
         // 실습 1: AddMember(), RemoveMember()를 구현하세요.
         // 파티원 추가
         public void AddMember() {
-            if (memberCount >= 4) {
+            if (memberCount >= maxMembers) {
                 Console.WriteLine("파티원이 최대 인원입니다.");
                 return;
             }
@@ -63,5 +68,21 @@
         }
 
         // 실습 3: 공통 정보를 위한 static 필드/프로퍼티/메서드를 구현하세요.
+        public int TotalParties {
+            get { return totalParties; }
+        }
+
+        public int MaxMembers {
+            get { return maxMembers; }
+        }
+
+        public int RequiredMembers {
+            get { return requiredMembers; }
+            set {
+                if (value >= 1 || value <= maxMembers) {
+                    requiredMembers = value;
+                }
+            }
+        }
     }
 }
